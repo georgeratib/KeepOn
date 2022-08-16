@@ -5,20 +5,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var emailTil : TextInputLayout
+    private lateinit var auth : FirebaseAuth
+    private lateinit var databaseRef : DatabaseReference
     private lateinit var passwordTil : TextInputLayout
     private lateinit var Login_Btn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        auth = FirebaseAuth.getInstance()
+        databaseRef = FirebaseDatabase.getInstance().reference
         emailTil = findViewById(R.id.Login_input_layout_Email)
         passwordTil = findViewById(R.id.Login_input_layout_Password)
         Login_Btn = findViewById(R.id.Login_Btn_Login)
@@ -67,6 +73,40 @@ class LoginActivity : AppCompatActivity() {
 
 
      }
+
+    private fun validateEmail(): Boolean {
+        val email = emailTil.editText!!.text.toString().trim()
+        if (email.isEmpty()){
+            emailTil.error = "Field Can't be Empty"
+            return false
+
+        }
+        // ملاحظة 79
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            emailTil.error = "Invalid Email"
+            return false
+        }
+
+        emailTil.error = null
+        return true
+    }
+    private fun validatePassword(): Boolean {
+        val password = passwordTil.editText!!.text.toString().trim()
+
+
+        if (password.isEmpty()){
+            passwordTil.error = "Field Can't be Empty"
+            return false
+        }
+
+
+
+        // ملاحظة 111 & 112
+        passwordTil.error = null
+
+        return true
+    }
+
 
 
 

@@ -114,9 +114,7 @@ class RegisterActivity : AppCompatActivity() {
         rePasswordTil.error = null
         return true
     }
-//Co
-//Co
-//Co
+
     private fun registerNewUser() {
         if (!validateFullName() or !validateUserName() or !validateEmail() or !validatePassword())
         return
