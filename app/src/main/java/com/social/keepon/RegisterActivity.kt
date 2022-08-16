@@ -116,6 +116,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 //Co
 //Co
+//Co
     private fun registerNewUser() {
         if (!validateFullName() or !validateUserName() or !validateEmail() or !validatePassword())
         return
