@@ -7,8 +7,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Patterns
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -27,7 +29,19 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var registerProgressDialog: ProgressDialog
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
+    private var doubleBackToExit = false
+    override fun onBackPressed() {
+        if (doubleBackToExit) {
+            super.onBackPressed()
+            return
+        }
+        doubleBackToExit = true
+        Toast.makeText(this, "Press Again To Exit", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            doubleBackToExit = false
 
+        }, 2000)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
         databaseRef = FirebaseDatabase.getInstance().reference.child("users")
         registerProgressDialog = ProgressDialog(this@RegisterActivity)
         signUp_Btn.setOnClickListener {
-
+                registerNewUser()
 
         }
 
