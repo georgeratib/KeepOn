@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
             doubleBackToExit = false
 
         }, 2000)
+
+        //com
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
