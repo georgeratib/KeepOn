@@ -97,17 +97,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login() {
+        Register_Tv.isEnabled= false
         if (!validateEmail() or !validatePassword())
             return
         findViewById<ProgressBar>(R.id.login_progress_bar).visibility = ViewGroup.VISIBLE
         auth.signInWithEmailAndPassword(
             emailTil.editText!!.text.toString(),
             passwordTil.editText!!.text.toString()
+
         )
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if (auth.currentUser!!.isEmailVerified) {
                         checkGenderSavedOrNot()
+                        Register_Tv.isEnabled = true
                     } else {
                         findViewById<ProgressBar>(R.id.login_progress_bar).visibility =
                             ViewGroup.INVISIBLE
@@ -128,6 +131,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener {
+                Register_Tv.isEnabled = true
                 AlertDialog.Builder(this)
                     .setTitle("Attention")
                     .setMessage("${it.message}")

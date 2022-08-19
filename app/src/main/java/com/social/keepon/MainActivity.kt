@@ -1,9 +1,12 @@
 package com.social.keepon
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Button
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -24,9 +27,20 @@ class MainActivity : AppCompatActivity() {
         //com
 
     }
+
+    private lateinit var logoutbtn : Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+//        //logoutbtn = findViewById(R.id.main_btn_logout)
+//       // logoutbtn.setOnClickListener{
+//         //   FirebaseAuth.getInstance().signOut()
+//           // startActivity(Intent(this, LoginActivity::class.java))
+//            //finish()
+//        }
 
 
     }

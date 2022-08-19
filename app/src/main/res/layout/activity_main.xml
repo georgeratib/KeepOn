@@ -5,9 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"
+        android:layout_weight="5"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white"
+        app:labelVisibilityMode="unlabeled"
+        android:id="@+id/nav_view"
+        app:menu="@menu/bottom_nav_menu"
+        android:layout_gravity="bottom"/>
+
+
+
 
     </LinearLayout>
 
